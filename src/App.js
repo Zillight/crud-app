@@ -9,10 +9,14 @@ function App() {
     setNewTask(event.target.value)
   }
   const addTask = () => {
-    setTodo([...todo, newTask])
+    const task = {
+      id: todo.length === 0 ? 1 : todo[todo.length-1].id + 1,
+      taskName: newTask,
+    }
+    setTodo([...todo, task])
   }
-  const deleteTask = (taskName) => {
-    setTodo(todo.filter(task => task !== taskName))
+  const deleteTask = (id) => {
+    setTodo(todo.filter(task => task.id !== id))
   }
 
   return (
@@ -25,8 +29,8 @@ function App() {
         {todo.map(task => {
           return ( 
             <div>
-              <h1>{task}</h1>
-              <button onClick={()=> deleteTask(task)}> X </button>
+              <h1>{task.taskName}</h1>
+              <button onClick={()=> deleteTask(task.id)}> X </button>
             </div>
           )})}
       </div>
