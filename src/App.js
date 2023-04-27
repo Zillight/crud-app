@@ -11,8 +11,8 @@ function App() {
   const addTask = () => {
     setTodo([...todo, newTask])
   }
-  const deleteTask = () => {
-    
+  const deleteTask = (taskName) => {
+    setTodo(todo.filter(task => task !== taskName))
   }
 
   return (
@@ -26,7 +26,7 @@ function App() {
           return ( 
             <div>
               <h1>{task}</h1>
-              <button onClick={deleteTask}> X </button>
+              <button onClick={()=> deleteTask(task)}> X </button>
             </div>
           )})}
       </div>
